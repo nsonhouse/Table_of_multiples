@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Part 1 HW Print Table with Multiples</title>   
+</head>
+<body>
+        <form id="string-entry" onsubmit="return false">
+            Enter a number:<br>
+            <input id="myNum"><br><br>
+            <button id="btn">Generate Table</button>
+        </form>
+        <br>
+
+        <div id="output">
+            <table id="myTable"></table>
+        </div>         
+
+                <script type="text/javascript">               
+                  
+                  document.getElementById("btn").addEventListener("click", printMultiplicationTable);                  
+                
+                    function printMultiplicationTable() {
+                        let multiplier = document.getElementById("myNum").value;
+                        let cols = 4;
+                        let rows = 5;
+
+                        // get the reference for the body
+                        var body = document.getElementsByTagName("body")[0];
+
+                        // creates a <table> element and a <tbody> element
+                        var tbl = document.createElement("table");
+                        var tblBody = document.createElement("tbody");
+
+
+                        // creating all cells
+                        for (var i = 0; i < rows; i++) {
+                            // creates a table row
+                            var row = document.createElement("tr");                        
+
+                            for (var j = 0; j < cols; j++) {
+                                // Create a <td> element and a text node, make the text
+                                // node the contents of the <td>, and put the <td> at
+                                // the end of the table row
+                                var cell = document.createElement("td");                                
+                                var cellText = document.createTextNode(multiplier * (i * cols + (j + 1)));
+                                cell.appendChild(cellText);
+                                row.appendChild(cell);
+                            }
+                            // add the row to the end of the table body
+                            tblBody.appendChild(row);
+                        }
+
+                        // put the <tbody> in the <table>
+                        tbl.appendChild(tblBody);
+                        // appends <table> into <body>
+                        body.appendChild(tbl);
+                        // sets the border attribute of tbl to 2;
+                        tbl.setAttribute("border", "2");
+                    }  
+
+                </script>      
+</body>
+</html>
